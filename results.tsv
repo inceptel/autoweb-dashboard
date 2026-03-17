@@ -1,0 +1,4 @@
+timestamp	status	description
+2026-03-17T23:44:45Z	keep	Activity feed: replaced HH:MM timestamps with relative times (2m ago, 5h ago)
+2026-03-17T23:46:38Z	keep	Added keep% success rate to each instance card (keeps/total, color-coded green/yellow/red); also use relTime for last_keep timestamp
+2026-03-17T23:48:17Z	keep	Added thin colored keep-rate progress bar below the keep% text on each instance card
