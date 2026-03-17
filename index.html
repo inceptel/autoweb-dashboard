@@ -78,7 +78,9 @@ h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
 
 .keep-rate {
   font-size: 11px; margin-bottom: 6px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
 }
+.run-rate { font-size: 10px; color: var(--muted); font-weight: 400; margin-left: auto; }
 .keep-rate-bar { height: 3px; background: var(--bg3); border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
 .keep-rate-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
 .last-keep {
@@ -138,7 +140,12 @@ function relTime(iso) {
   return Math.floor(diff / 86400) + 'd ago';
 }
 
-function renderCard(inst) {
+function keepRate(instName, recent) {
+  const hourAgo = Date.now() - 3600000;
+  return (recent || []).filter(r => r.instance === instName && new Date(r.time) > hourAgo).length;
+}
+
+function renderCard(inst, recent) {
   return `
     <div class="card" data-instance="${inst.name}">
       <div class="card-header">
@@ -152,10 +159,12 @@ function renderCard(inst) {
       </div>
       ${(function() {
           const total = inst.keeps + inst.reverts;
-          if (total === 0) return '<div class="keep-rate"><span style="color:#475569">no data</span></div><div class="keep-rate-bar"><div class="keep-rate-fill" style="width:0%"></div></div>';
+          const rate = keepRate(inst.name, recent);
+          const rateStr = rate > 0 ? `<span class="run-rate">~${rate}/hr</span>` : '';
+          if (total === 0) return `<div class="keep-rate"><span style="color:#475569">no data</span>${rateStr}</div><div class="keep-rate-bar"><div class="keep-rate-fill" style="width:0%"></div></div>`;
           const pct = Math.round(inst.keeps / total * 100);
           const color = pct >= 90 ? '#4ade80' : pct >= 70 ? '#fbbf24' : '#f87171';
-          return `<div class="keep-rate"><span style="color:${color}">${pct}% kept</span><span style="color:#475569"> (${total} total)</span></div><div class="keep-rate-bar"><div class="keep-rate-fill" style="width:${pct}%;background:${color}"></div></div>`;
+          return `<div class="keep-rate"><span style="color:${color}">${pct}% kept</span><span style="color:#475569"> (${total} total)</span>${rateStr}</div><div class="keep-rate-bar"><div class="keep-rate-fill" style="width:${pct}%;background:${color}"></div></div>`;
         })()}
       <div class="last-keep">
         ${inst.last_time ? `<span class="ts">${relTime(inst.last_time)}</span>` : ''}
@@ -184,7 +193,7 @@ async function load() {
     document.getElementById('total-keeps').textContent =
       data.instances.reduce((s, i) => s + i.keeps, 0).toLocaleString();
     document.getElementById('updated').textContent = 'updated ' + fmtTime(data.updated);
-    document.getElementById('cards').innerHTML = data.instances.map(renderCard).join('');
+    document.getElementById('cards').innerHTML = data.instances.map(i => renderCard(i, data.recent)).join('');
     document.getElementById('activity').innerHTML = renderActivity(data.recent);
   } catch (e) {
     document.getElementById('cards').innerHTML =

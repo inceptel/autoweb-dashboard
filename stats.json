@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-17T23:49:03.205054+00:00",
+  "updated": "2026-03-17T23:51:11.642745+00:00",
   "instances": [
     {
       "name": "nba",
@@ -62,56 +62,6 @@
       "time": "2026-03-17T23:17:25Z",
       "instance": "nba",
       "desc": "Add CONF (conference) record column to standings table \u2014 shows conference W-L record (e.g. '28-14') "
-    },
-    {
-      "time": "2026-03-17T23:15:07Z",
-      "instance": "nba",
-      "desc": "Add team color left-border accent to standings rows \u2014 each team's primary color appears as a 3px lef"
-    },
-    {
-      "time": "2026-03-17T23:13:04Z",
-      "instance": "nba",
-      "desc": "Add ROAD record column to standings table \u2014 shows road W-L record (e.g. '18-22') alongside HOME reco"
-    },
-    {
-      "time": "2026-03-17T23:10:46Z",
-      "instance": "nba",
-      "desc": "Add HOME record column to standings table \u2014 shows home W-L record (e.g. '25-8') alongside W/L/PCT/GB"
-    },
-    {
-      "time": "2026-03-17T23:07:38Z",
-      "instance": "nba",
-      "desc": "Add colored broadcast network badges \u2014 ESPN=red, TNT=blue, ABC=blue, NBC=gold, NBA TV=purple; unknow"
-    },
-    {
-      "time": "2026-03-17T23:04:50Z",
-      "instance": "nba",
-      "desc": "Add venue/arena name to scheduled game cards \u2014 shows e.g. 'Madison Square Garden \u00b7 New York' below p"
-    },
-    {
-      "time": "2026-03-17T23:01:58Z",
-      "instance": "nba",
-      "desc": "Add countdown timer to scheduled games \u2014 tip-off status now shows e.g. '7:00 PM EDT \u00b7 in 2h 35m' for"
-    },
-    {
-      "time": "2026-03-17T22:59:38Z",
-      "instance": "nba",
-      "desc": "Improve mobile game card compactness \u2014 extend responsive breakpoint to 480px (from 400px) and reduce"
-    },
-    {
-      "time": "2026-03-17T22:55:44Z",
-      "instance": "nba",
-      "desc": "Show road/home split records for scheduled games \u2014 away team shows ROAD record, home team shows HOME"
-    },
-    {
-      "time": "2026-03-17T22:52:16Z",
-      "instance": "nba",
-      "desc": "Add section headers between game groups \u2014 'Live', 'Final', 'Upcoming' labels with game count badges "
-    },
-    {
-      "time": "2026-03-17T22:48:21Z",
-      "instance": "nba",
-      "desc": "Make game cards clickable links to ESPN game pages \u2014 each card opens espn.com/nba/game page in new t"
     }
   ]
 }
