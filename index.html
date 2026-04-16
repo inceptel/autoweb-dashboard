@@ -90,11 +90,14 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
 .ft-bar{display:flex;gap:4px;padding:7px 16px;border-bottom:1px solid var(--b1);flex-shrink:0;flex-wrap:wrap}
 .ft{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t3);letter-spacing:.02em;transition:all .1s}
 .ft:hover{background:var(--s2);color:var(--t1)}.ft.on{background:var(--s3)}.ft.fk.on{color:var(--green)}.ft.fv.on{color:var(--red)}.ft.fc.on{color:var(--yel)}
+.refresh-bar{position:absolute;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:0 1px 1px 0;z-index:99;width:100%;transform-origin:left;animation:drain 4.8s linear forwards}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 </style>
 </head>
 <body>
-<div class="layout">
+<div class="layout" style="position:relative">
+  <div class="refresh-bar" id="rbar"></div>
   <div class="hdr">
     <button class="sb-toggle" id="sb-toggle" onclick="toggleSb()">☰ <span id="sb-toggle-lbl">Instances</span></button>
     <span class="hdr-title">⚡ Autoweb</span>
@@ -364,7 +367,9 @@ async function refresh(){
     (raw.recent||[]).forEach(r=>{const n=r.instance;if(!recentByInst[n])recentByInst[n]=[];recentByInst[n].push({ts:r.time,status:'keep',desc:r.desc});});
     arr.forEach(i=>{i.last_ts=i.last_ts||i.last_time;i.recent=i.recent||recentByInst[i.name]||[];});
     instances=arr.sort((a,b)=>b.running-a.running||b.keeps-a.keeps);
-    lastRefresh=Date.now();renderSb();
+    lastRefresh=Date.now();
+    const rb=document.getElementById('rbar');if(rb){rb.style.animation='none';rb.offsetHeight;rb.style.animation='drain 4.8s linear forwards';}
+    renderSb();
     if(!sel&&instances.length){pick((instances.find(i=>i.running)||instances[0]).name);}
     else if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}
     updateTs();
