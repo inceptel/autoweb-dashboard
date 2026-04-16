@@ -313,7 +313,7 @@ function renderDet(i){
     return;
   }
   let lastDateKey='';
-  tb.innerHTML=rows.map(r=>{
+  tb.innerHTML=rows.map((r,idx)=>{
     const cl={keep:'bk',revert:'bv',crash:'bc'}[r.status]||'bx';
     const rc={keep:'row-k',revert:'row-v',crash:'row-c'}[r.status]||'row-x';
     let descHtml=e(r.desc);
@@ -331,7 +331,9 @@ function renderDet(i){
         sep=`<tr><td colspan="3" style="padding:6px 16px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.03em;border-bottom:1px solid var(--b1);background:var(--s1)">${lbl}</td></tr>`;
       }
     }
-    return sep+`<tr class="${rc}"><td class="ts">${fts(r.ts)}<br><span style="font-size:9px;color:var(--t3)">${ago(r.ts)}</span></td><td class="sc"><span class="badge ${cl}">${r.status}</span></td><td><span class="desc">${descHtml}</span></td></tr>`;
+    let gapHtml='';
+    if(idx<rows.length-1&&r.ts&&rows[idx+1].ts){const gapMs=new Date(r.ts)-new Date(rows[idx+1].ts);const gapMin=Math.round(gapMs/60000);if(gapMin>0){const gapTxt=gapMin>=60?Math.floor(gapMin/60)+'h '+(gapMin%60)+'m':gapMin+'m';gapHtml=`<br><span style="font-size:8px;color:var(--t3);opacity:.45" title="Time since previous iteration">+${gapTxt}</span>`;}}
+    return sep+`<tr class="${rc}"><td class="ts">${fts(r.ts)}<br><span style="font-size:9px;color:var(--t3)">${ago(r.ts)}</span>${gapHtml}</td><td class="sc"><span class="badge ${cl}">${r.status}</span></td><td><span class="desc">${descHtml}</span></td></tr>`;
   }).join('');
   const foot=document.getElementById('d-foot');
   if(foot){const tot=i.keeps+i.reverts+i.crashes;foot.style.display='block';foot.innerHTML=q?`<span style="color:var(--yel)">${rows.length}</span> match${rows.length!==1?'es':''} for "${e(q)}"${detFilter?' in '+detFilter:''}`:detFilter?`${rows.length} of ${rec.length} entries · filtered by <span style="color:${detFilter==='keep'?'var(--green)':detFilter==='revert'?'var(--red)':detFilter==='crash'?'var(--yel)':'var(--t2)'}">${detFilter}</span>`:`showing ${rec.length} of ${tot} total iterations`;}
