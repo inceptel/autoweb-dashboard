@@ -114,3 +114,4 @@
 2026-04-16T12:51:29Z	keep	Add live 'next ~Xm' countdown to running sidebar cards — estimates next iteration from avg interval + last activity; ticks every 1s; pulses orange when overdue (~now)
 2026-04-16T12:56:06Z	keep	Add iteration interval gaps to detail table — small '+Xm' annotation below each row's timestamp shows time elapsed since previous entry, making iteration pace visible at a glance
 2026-04-16T12:59:53Z	keep	Add refresh progress bar — thin 2px green-to-blue gradient bar at top drains over 4.8s cycle, resets on each 5s auto-refresh; gives visual feedback about refresh timing without taking space
+2026-04-16T13:02:48Z	keep	Add run rate (~N/hr) and live 'next ~Xm' countdown to detail panel header — running instances show iteration pace and estimated next run time, matching sidebar card info; ticks live via updateTs
