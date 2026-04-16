@@ -116,3 +116,4 @@
 2026-04-16T12:59:53Z	keep	Add refresh progress bar — thin 2px green-to-blue gradient bar at top drains over 4.8s cycle, resets on each 5s auto-refresh; gives visual feedback about refresh timing without taking space
 2026-04-16T13:02:48Z	keep	Add run rate (~N/hr) and live 'next ~Xm' countdown to detail panel header — running instances show iteration pace and estimated next run time, matching sidebar card info; ticks live via updateTs
 2026-04-16T13:06:00Z	keep	Add time span to detail panel footer — shows 'spanning Xh Ym' alongside entry count so users see the time window covered by visible entries; works with filters and search
+2026-04-16T13:10:54Z	keep	Sort stopped instances by last activity time (most recent first) instead of by keeps count — recently active instances like alpha (16h) and cython (1d) now appear at top of stopped section instead of being buried below older high-keep instances

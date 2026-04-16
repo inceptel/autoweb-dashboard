@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T13:03:05.022628+00:00",
+  "updated": "2026-04-16T13:06:20.224994+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,54 +67,14 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 8,
+      "keeps": 0,
       "reverts": 0,
-      "crashes": 1,
-      "last_keep": "Phase 4: Advanced metrics \u2014 fill rate (37% overall, BTC/ETH/SOL ~80%, ZEREBRO 19%), markout by posit",
-      "last_time": "2026-04-16T12:42:22Z"
+      "crashes": 0,
+      "last_keep": null,
+      "last_time": null
     }
   ],
   "recent": [
-    {
-      "time": "2026-04-16T12:42:22Z",
-      "instance": "backtest",
-      "desc": "Phase 4: Advanced metrics \u2014 fill rate (37% overall, BTC/ETH/SOL ~80%, ZEREBRO 19%), markout by posit"
-    },
-    {
-      "time": "2026-04-16T12:27:27Z",
-      "instance": "backtest",
-      "desc": "Phase 3: Parameter sweeps \u2014 added --param-sweep flag to backtester. Sweeps spread_mult, pos_mult, ma"
-    },
-    {
-      "time": "2026-04-16T12:06:49Z",
-      "instance": "backtest",
-      "desc": "Phase 2 complete: Alpha integration validated on full test period (19 sym x 4 days). Alpha improves "
-    },
-    {
-      "time": "2026-04-16T12:06:10Z",
-      "instance": "backtest",
-      "desc": "Phase 2 progress: trained LGBM alpha model (3 train dates, 1.4M obs, 48 features). Alpha compare inf"
-    },
-    {
-      "time": "2026-04-16T12:00:25Z",
-      "instance": "backtest",
-      "desc": "Phase 2: Alpha integration \u2014 alpha/alpha_model.py (train/save/predict LGBM Huber 48-feature model), "
-    },
-    {
-      "time": "2026-04-16T11:48:14Z",
-      "instance": "backtest",
-      "desc": "Phase 0 latency sim + sweep: added --latency and --latency-sweep to backtester. Heapq-based pending "
-    },
-    {
-      "time": "2026-04-16T11:40:56Z",
-      "instance": "backtest",
-      "desc": "Phase 1: test period (Apr 11-14) validation \u2014 19 symbols x 4 days. 33062 fills, $326k vol, PnL -$67."
-    },
-    {
-      "time": "2026-04-16T11:19:52Z",
-      "instance": "backtest",
-      "desc": "Phase 0: backtester engine built \u2014 alpha/backtester.py with shadow_book integration, EMA spread, quo"
-    },
     {
       "time": "2026-04-15T21:09:16Z",
       "instance": "alpha",
@@ -174,6 +134,46 @@
       "time": "2026-04-15T09:03:37Z",
       "instance": "cython",
       "desc": "No remaining optimization targets \u2014 all 6 plan items complete. 495 tests pass, 4 .so modules loaded,"
+    },
+    {
+      "time": "2026-04-15T09:02:30Z",
+      "instance": "cython",
+      "desc": "Impl verification: build OK (4 .so), 495 tests pass, 1.3x combined speedup (4432->3339ns, 1.1us/tick"
+    },
+    {
+      "time": "2026-04-15T09:01:11Z",
+      "instance": "cython",
+      "desc": "Plan fully complete \u2014 all 6 items done, no remaining optimization targets. strategy.py is I/O-bound "
+    },
+    {
+      "time": "2026-04-15T08:59:29Z",
+      "instance": "cython",
+      "desc": "Verified: all 4 Cython extensions built, 495 tests pass, 1.4x combined speedup (1.4us saved/tick)"
+    },
+    {
+      "time": "2026-04-15T08:58:16Z",
+      "instance": "cython",
+      "desc": "Plan complete \u2014 all 6 optimization items done. Final verification: 495 tests pass, all 4 .so modules"
+    },
+    {
+      "time": "2026-04-15T08:57:00Z",
+      "instance": "cython",
+      "desc": "All 4 Cython modules built+tested (md_normalize, risk, order_slot, strat_mm). Fixed strat_mm benchma"
+    },
+    {
+      "time": "2026-04-15T08:53:45Z",
+      "instance": "cython",
+      "desc": "Final benchmark comparison: bench_final.py created + bench_hot_path.py updated with order_slot Cytho"
+    },
+    {
+      "time": "2026-04-15T08:43:01Z",
+      "instance": "cython",
+      "desc": "Cythonize strat_mm_003: _fast_strat_mm.pyx with fast_calculate_quotes/fast_is_inside_dead_zone/fast_"
+    },
+    {
+      "time": "2026-04-15T08:33:00Z",
+      "instance": "cython",
+      "desc": "Built+tested md_normalize.pyx, risk.pyx, order_slot.pyx \u2014 480 tests pass. Cython speedups: l2=2.5x ("
     }
   ]
 }

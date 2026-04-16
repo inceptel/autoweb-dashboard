@@ -377,7 +377,7 @@ async function refresh(){
     const recentByInst={};
     (raw.recent||[]).forEach(r=>{const n=r.instance;if(!recentByInst[n])recentByInst[n]=[];recentByInst[n].push({ts:r.time,status:'keep',desc:r.desc});});
     arr.forEach(i=>{i.last_ts=i.last_ts||i.last_time;i.recent=i.recent||recentByInst[i.name]||[];});
-    instances=arr.sort((a,b)=>b.running-a.running||b.keeps-a.keeps);
+    instances=arr.sort((a,b)=>{if(b.running!==a.running)return b.running-a.running;const aT=a.last_ts?new Date(a.last_ts).getTime():0,bT=b.last_ts?new Date(b.last_ts).getTime():0;return bT-aT;});
     lastRefresh=Date.now();
     const rb=document.getElementById('rbar');if(rb){rb.style.animation='none';rb.offsetHeight;rb.style.animation='drain 4.8s linear forwards';}
     renderSb();
