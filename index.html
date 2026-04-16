@@ -422,6 +422,12 @@ document.addEventListener('keydown',e=>{
     const inp=document.getElementById('d-srch');
     if(inp){inp.focus();inp.select();}
   }
+  if(e.key==='r'&&!inInput){
+    e.preventDefault();
+    refresh();
+    const ts=document.getElementById('h-ts');
+    ts.textContent='refreshing…';ts.style.color='var(--green)';
+  }
   if(e.key==='Escape'){
     const inp=document.getElementById('d-srch');
     if(inp&&document.activeElement===inp){inp.blur();}
