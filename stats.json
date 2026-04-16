@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T12:03:31.462780+00:00",
+  "updated": "2026-04-16T12:06:32.256820+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 4,
+      "keeps": 5,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 2: Alpha integration \u2014 alpha/alpha_model.py (train/save/predict LGBM Huber 48-feature model), ",
-      "last_time": "2026-04-16T12:00:25Z"
+      "last_keep": "Phase 2 progress: trained LGBM alpha model (3 train dates, 1.4M obs, 48 features). Alpha compare inf",
+      "last_time": "2026-04-16T12:06:10Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T12:06:10Z",
+      "instance": "backtest",
+      "desc": "Phase 2 progress: trained LGBM alpha model (3 train dates, 1.4M obs, 48 features). Alpha compare inf"
+    },
     {
       "time": "2026-04-16T12:00:25Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T08:59:29Z",
       "instance": "cython",
       "desc": "Verified: all 4 Cython extensions built, 495 tests pass, 1.4x combined speedup (1.4us saved/tick)"
-    },
-    {
-      "time": "2026-04-15T08:58:16Z",
-      "instance": "cython",
-      "desc": "Plan complete \u2014 all 6 optimization items done. Final verification: 495 tests pass, all 4 .so modules"
     }
   ]
 }
