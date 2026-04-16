@@ -119,7 +119,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
         <div class="ft-bar" id="d-filt" style="display:none"></div>
         <div class="cur" id="d-cur"></div>
         <table>
-          <thead><tr><th>Time</th><th class="sc">Status</th><th>Description</th></tr></thead>
+          <thead id="d-thead"><tr><th>Time</th><th class="sc">Status</th><th>Description</th></tr></thead>
           <tbody id="d-tb"></tbody>
         </table>
       </div>
@@ -237,6 +237,7 @@ function renderDet(i){
     fbar.innerHTML=tabs.map(t=>`<button class="ft ${t.cls}${detFilter===t.k||(!detFilter&&t.k==='all')?' on':''}" onclick="setDf('${t.k}','${i.name}')">${t.label} <span style="opacity:.55;font-weight:400">${t.cnt}</span></button>`).join('')+`<input id="d-srch" type="text" placeholder="/ to search…" value="${e(detSearch)}" oninput="setDs(this.value,'${i.name}')" style="margin-left:auto;background:var(--s2);border:1px solid var(--b2);border-radius:6px;padding:1px 7px;font-size:10px;color:var(--t1);outline:none;width:120px;height:20px" />`;
   } else { fbar.style.display='none'; }
 
+  document.getElementById('d-thead').style.display=rec.length?'':'none';
   const tb=document.getElementById('d-tb');
   let rows=(detFilter&&detFilter!=='all')?rec.filter(r=>r.status===detFilter):rec;
   const q=detSearch.trim().toLowerCase();
