@@ -259,8 +259,12 @@ function pick(name){
 
 async function refresh(){
   try{
-    const data=await fetch('/aw/instances.json?_='+Date.now()).then(r=>r.json());
-    instances=data.sort((a,b)=>b.running-a.running||b.keeps-a.keeps);
+    const raw=await fetch('autoweb-stats.json?_='+Date.now()).then(r=>r.json());
+    const arr=raw.instances||raw;
+    const recentByInst={};
+    (raw.recent||[]).forEach(r=>{const n=r.instance;if(!recentByInst[n])recentByInst[n]=[];recentByInst[n].push({ts:r.time,status:'keep',desc:r.desc});});
+    arr.forEach(i=>{i.last_ts=i.last_ts||i.last_time;i.recent=i.recent||recentByInst[i.name]||[];});
+    instances=arr.sort((a,b)=>b.running-a.running||b.keeps-a.keeps);
     lastRefresh=Date.now();renderSb();
     if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}
     updateTs();
