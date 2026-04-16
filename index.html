@@ -399,17 +399,21 @@ async function init(){
 document.addEventListener('keydown',e=>{
   if(!instances.length)return;
   const inInput=e.target.tagName==='INPUT';
-  if(e.key==='ArrowDown'||e.key==='ArrowUp'){
-    if(inInput)return;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'||((!inInput)&&(e.key==='j'||e.key==='k'))){
+    if(inInput&&(e.key==='ArrowDown'||e.key==='ArrowUp'))return;
     e.preventDefault();
     const idx=instances.findIndex(x=>x.name===sel);
-    const next=(e.key==='ArrowDown')
+    const down=e.key==='ArrowDown'||e.key==='j';
+    const next=down
       ?Math.min(instances.length-1,idx<0?0:idx+1)
       :Math.max(0,idx<0?0:idx-1);
     pick(instances[next].name);
-    // scroll card into view
     const cards=document.querySelectorAll('.card');
     if(cards[next])cards[next].scrollIntoView({block:'nearest'});
+  }
+  if(e.key==='Enter'&&!inInput){
+    const i=instances.find(x=>x.name===sel);
+    if(i&&i.url)window.open(i.url,'_blank','noopener');
   }
   if(e.key==='/'&&!inInput){
     e.preventDefault();
