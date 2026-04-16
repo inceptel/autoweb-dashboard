@@ -99,6 +99,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
     <div class="hdr-meta">
       <span id="h-rate" style="font-weight:600"></span>
       <span><span class="run" id="h-run">0</span> running</span>
+      <span id="h-today" style="color:var(--green)"></span>
       <span id="h-crashes" style="color:var(--t3)"></span>
       <span id="h-reverts" style="color:var(--t3)"></span>
       <span><span id="h-tot">0</span> instances</span>
@@ -187,6 +188,14 @@ function renderSb(){
     const rPct=Math.round(totR/totAll*100);
     rEl.innerHTML=totR>0?`<span style="color:var(--red)">${totR}</span><span style="color:var(--t3);font-weight:400"> reverts</span><span style="color:var(--t3);font-weight:400;opacity:.7"> (${rPct}%)</span>`:`<span style="color:var(--t3)">0 reverts</span>`;
   }else{cEl.textContent='';rEl.textContent='';}
+  const todayStr=new Date().toDateString();
+  const todayKeeps=instances.reduce((s,i)=>{
+    const fromRecent=(i.recent||[]).filter(r=>r.status==='keep'&&r.ts&&new Date(r.ts).toDateString()===todayStr).length;
+    const fromLast=(!fromRecent&&i.last_ts&&new Date(i.last_ts).toDateString()===todayStr)?1:0;
+    return s+Math.max(fromRecent,fromLast);
+  },0);
+  const todayEl=document.getElementById('h-today');
+  todayEl.innerHTML=todayKeeps>0?`<span style="color:var(--green);font-weight:600">${todayKeeps} today</span>`:`<span style="color:var(--t3)">0 today</span>`;
   document.title = (pct!==null?pct+'% · ':'')+run+'/'+instances.length+' running · autoweb';
   if(!instances.length){document.getElementById('sb').innerHTML='<div class="empty">No instances</div>';return;}
   const runCount=instances.filter(i=>i.running).length;

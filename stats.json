@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T12:22:34.989155+00:00",
+  "updated": "2026-04-16T12:27:33.623874+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 6,
+      "keeps": 7,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 2 complete: Alpha integration validated on full test period (19 sym x 4 days). Alpha improves ",
-      "last_time": "2026-04-16T12:06:49Z"
+      "last_keep": "Phase 3: Parameter sweeps \u2014 added --param-sweep flag to backtester. Sweeps spread_mult, pos_mult, ma",
+      "last_time": "2026-04-16T12:27:27Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T12:27:27Z",
+      "instance": "backtest",
+      "desc": "Phase 3: Parameter sweeps \u2014 added --param-sweep flag to backtester. Sweeps spread_mult, pos_mult, ma"
+    },
     {
       "time": "2026-04-16T12:06:49Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T09:02:30Z",
       "instance": "cython",
       "desc": "Impl verification: build OK (4 .so), 495 tests pass, 1.3x combined speedup (4432->3339ns, 1.1us/tick"
-    },
-    {
-      "time": "2026-04-15T09:01:11Z",
-      "instance": "cython",
-      "desc": "Plan fully complete \u2014 all 6 items done, no remaining optimization targets. strategy.py is I/O-bound "
     }
   ]
 }
