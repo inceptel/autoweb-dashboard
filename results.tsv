@@ -110,3 +110,4 @@
 2026-04-16T12:35:03Z	keep	Add aggregate stats summary to collapsed stopped section header — shows '1477k · 353c · 81%' in color when stopped instances are hidden, so users retain visibility into stopped instances' aggregate health without expanding the section
 2026-04-16T12:37:44Z	keep	Add dynamic SVG favicon — color-coded dot (green/amber/red) reflects global keep rate; ring shape when instances are running, solid when all stopped; updates on each data refresh so health is visible from browser tab
 2026-04-16T12:43:03Z	keep	Add sparkline dots to detail panel header — shows activity history dots (green=keep, red=revert, amber=crash) with streak counter and today count below quality bar, matching sidebar card pattern
+2026-04-16T12:47:19Z	keep	Add activity count footer to detail panel — shows 'showing N of M total iterations' below table; shows filtered count when status filter active; shows match count with search term when searching
