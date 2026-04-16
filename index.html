@@ -39,6 +39,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',s
 }
 .card{padding:10px 12px;border-bottom:1px solid var(--b1);cursor:pointer;transition:background .1s;border-left:2px solid transparent}
 .card:hover{background:var(--s2)}
+.url-link:hover{opacity:1!important;text-shadow:0 0 6px currentColor}
 .card.on{background:var(--s3)}
 .card.stopped{opacity:.72;transition:opacity .15s}.card.stopped:hover,.card.stopped.on{opacity:1}
 .ch{display:flex;align-items:center;gap:6px;margin-bottom:4px}
@@ -178,7 +179,7 @@ function renderSb(){
     const txt=live?act:(i.last_keep||'');
     const ac=accent(i.name);
     return`<div class="card${sel===i.name?' on':''}${i.running?'':' stopped'}" style="border-left-color:${ac}${i.running?`;box-shadow:0 0 0 1px ${ac}22,0 2px 16px ${ac}18`:''}" onclick="pick('${i.name}')">
-      <div class="ch"><span class="cn" style="color:${ac}">${e(i.name)}</span>
+      <div class="ch"><span class="cn" style="color:${ac}">${e(i.name)}</span>${i.url?`<a href="${e(i.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="url-link" style="color:${ac};opacity:.6;font-size:10px;text-decoration:none;flex-shrink:0" title="Open ${e(i.name)} live site">↗</a>`:''}
         <span class="badge ${i.running?'br':'bs'}">${i.running?'<span class="pulse"></span>running':'stopped'}</span>
         ${!i.running&&i.last_ts?`<span style="font-size:9px;color:var(--t3);margin-left:2px">${ago(i.last_ts)}</span>`:''}</div>
       ${(()=>{const tot=i.keeps+i.reverts+i.crashes;const pct=tot?Math.round(i.keeps/tot*100):null;const col=pct===null?'var(--t3)':pct>=90?'var(--green)':pct>=70?'var(--yel)':'var(--red)';const rv=i.reverts>0?`<span class="r">▼${i.reverts}</span>`:`<span style="color:var(--t3)">▼0</span>`;const cr=i.crashes>0?`<span class="c">✕${i.crashes}</span>`:`<span style="color:var(--t3)">✕0</span>`;return`<div class="cs"><span class="k">▲${i.keeps}</span>${rv}${cr}${pct!==null?`<span class="pct" style="color:${col};background:${col}22">${pct}%</span>`:''}</div>`})()}
@@ -192,7 +193,7 @@ function renderSb(){
 function renderDet(i){
   document.getElementById('d-ph').style.display='none';
   const inn=document.getElementById('d-in');inn.style.display='flex';
-  const dn=document.getElementById('d-name');dn.textContent=i.name;dn.style.color=accent(i.name);
+  const dn=document.getElementById('d-name');dn.innerHTML=e(i.name)+(i.url?` <a href="${e(i.url)}" target="_blank" rel="noopener" class="url-link" style="color:${accent(i.name)};opacity:.5;font-size:12px;text-decoration:none" title="Open live site">↗</a>`:'');dn.style.color=accent(i.name);
   document.getElementById('d-badge').innerHTML=`<span class="badge ${i.running?'br':'bs'}">${i.running?'● running':'stopped'}</span>`;
   const _tot=i.keeps+i.reverts+i.crashes;const _pct=_tot?Math.round(i.keeps/_tot*100):null;
   const _rv=i.reverts>0?`<span style="color:var(--red)">${i.reverts}r</span>`:`<span style="color:var(--t3)">0r</span>`;

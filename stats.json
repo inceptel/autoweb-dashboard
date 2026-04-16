@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T11:38:29.697473+00:00",
+  "updated": "2026-04-16T11:43:35.603701+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 1,
+      "keeps": 2,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 0: backtester engine built \u2014 alpha/backtester.py with shadow_book integration, EMA spread, quo",
-      "last_time": "2026-04-16T11:19:52Z"
+      "last_keep": "Phase 1: test period (Apr 11-14) validation \u2014 19 symbols x 4 days. 33062 fills, $326k vol, PnL -$67.",
+      "last_time": "2026-04-16T11:40:56Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T11:40:56Z",
+      "instance": "backtest",
+      "desc": "Phase 1: test period (Apr 11-14) validation \u2014 19 symbols x 4 days. 33062 fills, $326k vol, PnL -$67."
+    },
     {
       "time": "2026-04-16T11:19:52Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T08:53:45Z",
       "instance": "cython",
       "desc": "Final benchmark comparison: bench_final.py created + bench_hot_path.py updated with order_slot Cytho"
-    },
-    {
-      "time": "2026-04-15T08:43:01Z",
-      "instance": "cython",
-      "desc": "Cythonize strat_mm_003: _fast_strat_mm.pyx with fast_calculate_quotes/fast_is_inside_dead_zone/fast_"
     }
   ]
 }
