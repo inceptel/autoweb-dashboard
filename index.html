@@ -121,6 +121,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
       <span id="h-ts">–</span>
     </div>
   </div>
+  <div id="g-qbar" style="height:2px;display:flex;flex-shrink:0;background:var(--b1)"></div>
   <div class="body">
     <div class="sb" id="sb"><div class="empty">Loading…</div></div>
     <div class="det" id="det">
@@ -260,6 +261,8 @@ function renderSb(){
   else{const lastTimes=instances.map(i=>i.last_ts).filter(Boolean).map(t=>new Date(t).getTime()).sort((a,b)=>b-a);if(lastTimes.length){todayEl.innerHTML=`<span style="color:var(--t3)">last ${ago(new Date(lastTimes[0]).toISOString())}</span>`;}else{todayEl.innerHTML=`<span style="color:var(--t3)">0 today</span>`;}}
   document.title = (pct!==null?pct+'% · ':'')+run+'/'+instances.length+' running · autoweb';
   updateFavicon();
+  const gqb=document.getElementById('g-qbar');
+  if(totAll){const gkw=Math.round(totK/totAll*100);const grw=Math.round(totR/totAll*100);const gcw=100-gkw-grw;gqb.innerHTML=`<div style="width:${gkw}%;background:var(--green);transition:width .3s" title="${gkw}% keeps (${totK})"></div><div style="width:${grw}%;background:var(--red);transition:width .3s" title="${grw}% reverts (${totR})"></div><div style="width:${gcw}%;background:var(--yel);transition:width .3s" title="${gcw}% crashes (${totC})"></div>`;}else{gqb.innerHTML='';}
   if(!instances.length){document.getElementById('sb').innerHTML='<div class="empty">No instances</div>';return;}
   const runCount=instances.filter(i=>i.running).length;
   const stopCount=instances.length-runCount;

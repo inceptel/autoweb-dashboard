@@ -126,3 +126,4 @@
 2026-04-16T13:38:56Z	keep	Fix data fetch URL — change relative 'autoweb-stats.json' to absolute '/dashboards/autoweb-stats.json' so fetch works at /aw/ route (Caddy rewrite was returning HTML for all relative requests)
 2026-04-16T13:42:41Z	keep	Add '?' keyboard shortcut help overlay — press '?' or click fixed '?' button to show/hide panel listing all shortcuts (j/k, arrows, Enter, /, r, p, Esc) with styled <kbd> elements; Escape dismisses overlay
 2026-04-16T13:45:49Z	keep	Add 's' keyboard shortcut to toggle stopped sidebar section — press s (when not in search input) to collapse/expand stopped instances without mouse; shortcut added to '?' help overlay
+2026-04-16T13:50:21Z	keep	Add global quality bar below header — thin 2px stacked bar (green keeps / red reverts / amber crashes) spanning full width shows overall health proportion at a glance with hover tooltips for exact percentages
