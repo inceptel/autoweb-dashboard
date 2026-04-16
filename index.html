@@ -154,6 +154,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
     <div class="help-row"><kbd>/</kbd> <span>Focus search box</span></div>
     <div class="help-row"><kbd>r</kbd> <span>Refresh data now</span></div>
     <div class="help-row"><kbd>p</kbd> <span>Pause / resume auto-refresh</span></div>
+    <div class="help-row"><kbd>s</kbd> <span>Toggle stopped instances</span></div>
     <div class="help-row"><kbd>Esc</kbd> <span>Clear search &amp; filters</span></div>
     <div class="help-row"><kbd>?</kbd> <span>Toggle this help</span></div>
   </div>
@@ -461,6 +462,7 @@ document.addEventListener('keydown',e=>{
     if(!paused){refresh();const rb=document.getElementById('rbar');if(rb){rb.style.animation='none';rb.offsetHeight;rb.style.animation='drain 4.8s linear forwards';}}
     else{const rb=document.getElementById('rbar');if(rb)rb.style.animation='none';}
   }
+  if(e.key==='s'&&!inInput){e.preventDefault();toggleStopped();}
   if(e.key==='?'&&!inInput){e.preventDefault();toggleHelp();}
   if(e.key==='Escape'){
     if(document.getElementById('help-overlay').classList.contains('on')){toggleHelp();return;}
