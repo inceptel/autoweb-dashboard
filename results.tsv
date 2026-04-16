@@ -101,3 +101,4 @@
 2026-04-16T12:00:25Z	keep	Add instance overview card to empty detail panel — shows big stat numbers (keeps/reverts/crashes/rate), quality bar, and last keep description instead of bare 'No matching entries' for instances without recent activity data
 2026-04-16T12:04:13Z	keep	Add Running/Stopped section headers to sidebar — green '▶ RUNNING N' and muted '■ STOPPED N' dividers group instances by status for clearer visual hierarchy
 2026-04-16T12:07:15Z	keep	Add quality bar to sidebar cards — thin 2px stacked bar below stats line showing green (keeps) / amber (crashes) proportions for visual health indicator
+2026-04-16T12:10:29Z	keep	Add per-instance run rate (~N/hr) to sparkline row in sidebar cards — calculated from recent entry timestamps, shown only for running instances with 2+ entries
