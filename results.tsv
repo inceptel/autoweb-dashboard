@@ -123,3 +123,4 @@
 2026-04-16T13:28:32Z	keep	Fix j/k navigation when stopped section collapsed — navigate only visible (running) instances instead of all instances, preventing detail panel from showing hidden stopped instances with broken scrollIntoView
 2026-04-16T13:32:02Z	keep	Add 'r' keyboard shortcut to manually trigger data refresh — press r (when not in search input) to reload stats immediately; shows brief 'refreshing…' flash in header timestamp
 2026-04-16T13:36:12Z	keep	Add pause/resume auto-refresh toggle — 'p' key pauses 5s refresh loop, shows amber '⏸ paused' pill in header; 'p' again resumes; 'r' manual refresh disabled while paused; refresh bar freezes when paused
+2026-04-16T13:38:56Z	keep	Fix data fetch URL — change relative 'autoweb-stats.json' to absolute '/dashboards/autoweb-stats.json' so fetch works at /aw/ route (Caddy rewrite was returning HTML for all relative requests)

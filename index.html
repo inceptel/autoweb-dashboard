@@ -374,7 +374,7 @@ function pick(name){
 
 async function refresh(){
   try{
-    const raw=await fetch('autoweb-stats.json?_='+Date.now()).then(r=>r.json());
+    const raw=await fetch('/dashboards/autoweb-stats.json?_='+Date.now()).then(r=>r.json());
     const arr=raw.instances||raw;
     const recentByInst={};
     (raw.recent||[]).forEach(r=>{const n=r.instance;if(!recentByInst[n])recentByInst[n]=[];recentByInst[n].push({ts:r.time,status:'keep',desc:r.desc});});
