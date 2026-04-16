@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T11:43:35.603701+00:00",
+  "updated": "2026-04-16T11:48:32.339329+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 2,
+      "keeps": 3,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 1: test period (Apr 11-14) validation \u2014 19 symbols x 4 days. 33062 fills, $326k vol, PnL -$67.",
-      "last_time": "2026-04-16T11:40:56Z"
+      "last_keep": "Phase 0 latency sim + sweep: added --latency and --latency-sweep to backtester. Heapq-based pending ",
+      "last_time": "2026-04-16T11:48:14Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T11:48:14Z",
+      "instance": "backtest",
+      "desc": "Phase 0 latency sim + sweep: added --latency and --latency-sweep to backtester. Heapq-based pending "
+    },
     {
       "time": "2026-04-16T11:40:56Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T08:57:00Z",
       "instance": "cython",
       "desc": "All 4 Cython modules built+tested (md_normalize, risk, order_slot, strat_mm). Fixed strat_mm benchma"
-    },
-    {
-      "time": "2026-04-15T08:53:45Z",
-      "instance": "cython",
-      "desc": "Final benchmark comparison: bench_final.py created + bench_hot_path.py updated with order_slot Cytho"
     }
   ]
 }

@@ -217,12 +217,26 @@ function renderDet(i){
   const q=detSearch.trim().toLowerCase();
   if(q)rows=rows.filter(r=>(r.desc||'').toLowerCase().includes(q));
   if(!rows.length){tb.innerHTML='<tr><td colspan="3" class="empty">No matching entries</td></tr>';return;}
+  let lastDateKey='';
   tb.innerHTML=rows.map(r=>{
     const cl={keep:'bk',revert:'bv',crash:'bc'}[r.status]||'bx';
     const rc={keep:'row-k',revert:'row-v',crash:'row-c'}[r.status]||'row-x';
     let descHtml=e(r.desc);
     if(q){const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');descHtml=e(r.desc).replace(re,'<mark style="background:#fbbf2433;color:var(--yel);border-radius:2px">$1</mark>');}
-    return`<tr class="${rc}"><td class="ts">${fts(r.ts)}<br><span style="font-size:9px;color:var(--t3)">${ago(r.ts)}</span></td><td class="sc"><span class="badge ${cl}">${r.status}</span></td><td><span class="desc">${descHtml}</span></td></tr>`;
+    let sep='';
+    if(r.ts){
+      const d=new Date(r.ts),today=new Date(),yest=new Date(Date.now()-86400000);
+      const dk=d.toDateString();
+      if(dk!==lastDateKey){
+        lastDateKey=dk;
+        let lbl;
+        if(dk===today.toDateString())lbl='Today';
+        else if(dk===yest.toDateString())lbl='Yesterday';
+        else{lbl=d.toLocaleDateString('en-US',{month:'short',day:'numeric'});const daysAgo=Math.round((Date.now()-d)/86400000);if(daysAgo>1)lbl+=' · '+daysAgo+'d ago';}
+        sep=`<tr><td colspan="3" style="padding:6px 16px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.03em;border-bottom:1px solid var(--b1);background:var(--s1)">${lbl}</td></tr>`;
+      }
+    }
+    return sep+`<tr class="${rc}"><td class="ts">${fts(r.ts)}<br><span style="font-size:9px;color:var(--t3)">${ago(r.ts)}</span></td><td class="sc"><span class="badge ${cl}">${r.status}</span></td><td><span class="desc">${descHtml}</span></td></tr>`;
   }).join('');
 }
 
