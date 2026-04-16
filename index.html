@@ -93,6 +93,15 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
 .refresh-bar{position:absolute;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:0 1px 1px 0;z-index:99;width:100%;transform-origin:left;animation:drain 4.8s linear forwards}
 @keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+.help-btn{position:fixed;bottom:12px;right:12px;width:28px;height:28px;border-radius:50%;background:var(--s2);border:1px solid var(--b2);color:var(--t3);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:50;transition:all .15s;line-height:1}
+.help-btn:hover{background:var(--s3);color:var(--t1);border-color:var(--t3)}
+.help-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:center;justify-content:center}
+.help-overlay.on{display:flex}
+.help-panel{background:var(--s1);border:1px solid var(--b2);border-radius:10px;padding:20px 24px;max-width:340px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.help-panel h3{font-size:13px;font-weight:600;color:#e2e8f0;margin-bottom:12px;letter-spacing:.02em}
+.help-row{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px;color:var(--t2)}
+.help-row kbd{display:inline-flex;align-items:center;justify-content:center;min-width:22px;padding:2px 6px;background:var(--s3);border:1px solid var(--b2);border-radius:4px;font-family:ui-monospace,monospace;font-size:11px;color:var(--t1);font-weight:600;line-height:1.4}
+.help-row span{flex:1}
 </style>
 </head>
 <body>
@@ -135,6 +144,20 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
     </div>
   </div>
 </div>
+<button class="help-btn" onclick="toggleHelp()" title="Keyboard shortcuts (?)">?</button>
+<div class="help-overlay" id="help-overlay" onclick="if(event.target===this)toggleHelp()">
+  <div class="help-panel">
+    <h3>Keyboard shortcuts</h3>
+    <div class="help-row"><kbd>j</kbd> <kbd>k</kbd> <span>Navigate instances</span></div>
+    <div class="help-row"><kbd>↑</kbd> <kbd>↓</kbd> <span>Navigate instances</span></div>
+    <div class="help-row"><kbd>Enter</kbd> <span>Open instance live URL</span></div>
+    <div class="help-row"><kbd>/</kbd> <span>Focus search box</span></div>
+    <div class="help-row"><kbd>r</kbd> <span>Refresh data now</span></div>
+    <div class="help-row"><kbd>p</kbd> <span>Pause / resume auto-refresh</span></div>
+    <div class="help-row"><kbd>Esc</kbd> <span>Clear search &amp; filters</span></div>
+    <div class="help-row"><kbd>?</kbd> <span>Toggle this help</span></div>
+  </div>
+</div>
 <script>
 let instances=[], sel=null, lastRefresh=null, detFilter=null, detSearch='', stoppedCollapsed=false, paused=false;
 const isMobile=()=>window.innerWidth<=640;
@@ -142,6 +165,7 @@ function openSb(){document.querySelector('.body').classList.add('sb-open');docum
 function closeSb(){document.querySelector('.body').classList.remove('sb-open');document.getElementById('sb-toggle-lbl').textContent='Instances';}
 function toggleSb(){document.querySelector('.body').classList.contains('sb-open')?closeSb():openSb();}
 function toggleStopped(){stoppedCollapsed=!stoppedCollapsed;renderSb();}
+function toggleHelp(){document.getElementById('help-overlay').classList.toggle('on');}
 const ACCENT={feather:'#818cf8',nba:'#fb923c',cli2html:'#22d3ee',premere:'#f472b6',trading:'#4ade80',golf:'#34d399',ria:'#e879f9',cython:'#facc15',alpha:'#38bdf8',backtest:'#fb7185'};
 function accent(name){return ACCENT[name]||'#60a5fa';}
 function milestone(keeps){
@@ -437,7 +461,9 @@ document.addEventListener('keydown',e=>{
     if(!paused){refresh();const rb=document.getElementById('rbar');if(rb){rb.style.animation='none';rb.offsetHeight;rb.style.animation='drain 4.8s linear forwards';}}
     else{const rb=document.getElementById('rbar');if(rb)rb.style.animation='none';}
   }
+  if(e.key==='?'&&!inInput){e.preventDefault();toggleHelp();}
   if(e.key==='Escape'){
+    if(document.getElementById('help-overlay').classList.contains('on')){toggleHelp();return;}
     const inp=document.getElementById('d-srch');
     if(inp&&document.activeElement===inp){inp.blur();}
     if(detSearch){detSearch='';if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}}
