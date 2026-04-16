@@ -1,5 +1,96 @@
-timestamp	status	description
-2026-03-17T23:44:45Z	keep	Activity feed: replaced HH:MM timestamps with relative times (2m ago, 5h ago)
-2026-03-17T23:46:38Z	keep	Added keep% success rate to each instance card (keeps/total, color-coded green/yellow/red); also use relTime for last_keep timestamp
-2026-03-17T23:48:17Z	keep	Added thin colored keep-rate progress bar below the keep% text on each instance card
-2026-03-17T23:50:33Z	keep	Added keeps/hr run-rate indicator to each instance card (computed from recent activity in last hour)
+2026-03-17T23:56:02Z	keep	Added keep/revert/crash status badges to activity feed rows for at-a-glance status
+2026-03-17T23:58:58Z	keep	Grid changed to auto-fit (single card fills full width); activity rows get colored left-border per instance
+2026-03-18T00:00:11Z	keep	Add sparkline row of 10 colored squares (green/red/yellow) below keep-rate bar showing last 10 iterations per instance
+2026-03-17T23:58:39Z	skip	Done. The sparkline row (10 small green squares) now appears below the keep-rate progress bar on each instance card, giv
+2026-03-18T00:02:35Z	keep	Fix sparkline direction: oldest dot now on left, newest on right (standard time-series convention)
+2026-03-18T00:04:21Z	keep	Add colored left-border per instance to activity feed rows — orange for nba, matching instance card accent colors
+2026-03-18T00:09:58Z	keep	Fix activity feed description truncation: add min-width:0 to .act-desc flex item so text-overflow:ellipsis actually fires
+2026-03-18T00:13:17Z	keep	Add title tooltips to truncated text — hovering over act-desc in activity feed and last-keep in cards now shows full description text
+2026-03-18T00:18:03Z	keep	Add streak counter to sparkline row — shows consecutive keeps (e.g. '10+') in green to the right of the sparkline dots
+2026-03-18T00:19:54Z	keep	Add live 15s tick to refresh relative timestamps (e.g. '2m ago') without network call — times stay accurate between 30s data refreshes
+2026-03-18T00:21:19Z	keep	Add 'flawless' badge to instance cards with 0 reverts and 0 crashes — indigo pill appears in card header
+2026-03-18T00:24:16Z	keep	Dim zero-value reverts and crashes to muted gray — only show red/amber when actually non-zero
+2026-03-18T00:28:32Z	keep	Add global keep rate to header — shows 'N keeps · X%' for at-a-glance overall success rate
+2026-03-18T00:31:13Z	keep	Replace ~N/hr run-rate with ~Nm/iter avg iteration time — shows loop speed more intuitively
+2026-03-18T00:34:03Z	keep	Allow last-keep text to wrap to 2 lines in card — shows more context about the last improvement instead of hard-truncating after one line
+2026-03-18T00:36:08Z	keep	Add total iterations badge to card header — shows 'N iters' pill next to instance name for at-a-glance run count
+2026-03-18T00:38:57Z	keep	Add 'next ~Xm' estimated next-run time alongside avg iter rate — shows users when to expect the next iteration based on avg interval + last activity time
+2026-03-18T00:41:39Z	keep	Click-to-expand activity feed rows — clicking a row toggles full description visible on a second line (truncated descriptions are now fully readable)
+2026-03-18T00:43:51Z	keep	Group FLAWLESS and RUNNING pills together on the right side of card header — fixes layout where flawless badge floated in center with justify-content:space-between
+2026-03-18T00:46:00Z	keep	Show accurate streak count for flawless instances — instead of '10+' (windowed), show the true streak equal to total keeps when reverts=0 and crashes=0
+2026-03-18T00:48:29Z	keep	Add milestone progress bar to card — thin orange bar + '14 to 75' label below sparkline shows keeps toward next round milestone
+2026-03-18T00:52:52Z	keep	Pulse 'next ~now' in orange when iteration is overdue — bold orange text with pulse animation draws attention when a new run is imminent
+2026-03-18T00:54:51Z	keep	Add relative timestamp to sparkline dot tooltips — hovering dots now shows '10m ago · keep: description' for fuller context
+2026-03-18T00:57:09Z	keep	Click-to-expand last-keep description in cards — clicking the last-keep area toggles 2-line clamp off, consistent with activity row expansion pattern
+2026-03-18T00:58:21Z	keep	Fix milestone bar color — use instance accent color dynamically instead of hardcoded --nba for all instances
+2026-03-18T01:00:04Z	keep	Add refresh progress bar — thin 2px bar at top drains over 29.5s to show time until next 30s auto-refresh
+2026-03-18T01:03:54Z	keep	Add 'showing 10 of N total iterations' footer to activity feed — clarifies that only the most recent iterations are shown
+2026-03-18T01:06:39Z	keep	Make next-run time live: 15s ticker now updates 'next ~Xm' spans; also fixes hardcoded --nba color to use instance accent color dynamically
+2026-03-18T01:09:16Z	keep	Add last-active time badge to card header — shows 'Xm ago' pill next to iter count so recency of last keep is visible at a glance without scrolling
+2026-03-21T23:20:42Z	keep	Add skip status styling — .act-status.skip (slate badge) and .spark-dot.skip (gray dot) for skip entries in activity feed and sparklines
+2026-03-21T23:21:51Z	keep	Add --premere color (#f472b6 pink) — card border, activity row border, instance name, and milestone bar color for the new premere instance that lacked any accent color styling
+2026-03-21T23:23:54Z	keep	Add running count to header — shows 'N/M running' in green next to keeps/rate for at-a-glance instance status
+2026-03-21T23:25:14Z	keep	Color instance names in card headers — CSS selectors match each card's accent color (nba=orange, feather=indigo, etc.) consistent with activity feed
+2026-03-21T23:28:52Z	keep	Color instance names in card headers with accent colors — feather=indigo, cli2html=cyan, nba=orange, premere=pink, matching activity feed convention
+2026-03-21T23:31:41Z	keep	Add total iterations count to header — 'N keeps of M · Xhows denominator so keep rate is immediately interpretable
+2026-03-21T23:33:42Z	keep	Fix per-card keep rate to include crashes in denominator — feather/cli2html now show ~772026-03-21T23:33:45Z	keep	Fix per-card keep rate to include crashes in denominator — feather/cli2html now show ~772026-03-21T23:33:47Z	keep	Fix per-card keep rate to include crashes in denominator — feather/cli2html now show ~77%/74% instead of misleading 100%, consistent with header global rate
+2026-03-21T23:37:58Z	keep	Show calendar dates (e.g. 'Mar 19') for timestamps older than 24h instead of 'Xd ago' — more informative for activity feed and card time badges
+2026-03-21T23:40:32Z	keep	Sort running instances first in card grid — premere (running) now appears before stopped instances
+2026-03-21T23:42:53Z	keep	Add instance-colored glow to running cards — box-shadow with accent color on cards where data-running=true so active instances visually pop
+2026-03-21T23:46:48Z	keep	Dim stopped cards to 0.72 opacity (restore to 1 on hover) — running cards now pop visually against dimmed stopped instances, complementing the accent-colored glow
+2026-03-21T23:49:34Z	keep	Add date separators to activity feed — 'Today', 'Yesterday', or 'Mar 19' dividers appear between groups of entries from different dates
+2026-03-21T23:52:31Z	keep	Fix misleading '0+' streak — return '—' when no recent entries exist for an instance (feather/cli2html showed '0+' despite having hundreds of keeps)
+2026-03-21T23:59:30Z	keep	Add total crashes count to header — '318 crashes' shown in amber alongside keeps count, making global crash rate visible at a glance
+2026-03-22T00:06:53Z	keep	Color 'updated X ago' header text by data staleness — green <5min, amber 5-60min, red >1hr; ticker keeps color live
+2026-03-22T00:09:04Z	keep	Add crash rate % to crashes stat label — shows e.g. 'crashes (23%)' in muted text so severity is immediately readable without calculation
+2026-03-22T00:13:32Z	keep	Show running instance names in accent colors in header instead of '1/4 running' count — 'premere running' in pink is more informative at a glance
+2026-03-22T00:18:00Z	keep	Add instance filter tabs to activity feed — clicking 'all', 'premere', 'feather', etc. filters the feed to just that instance's activity
+2026-03-22T00:22:36Z	keep	Add entry counts to activity filter tabs — 'all 20', 'premere 10', etc. shown in dimmed 9px text so users know how many items are behind each filter before clicking
+2026-03-22T00:27:56Z	keep	Add last-activity time hint to instance filter tabs — e.g. 'premere 10 · 7m ago' shows data freshness per instance at a glance
+2026-03-22T00:33:01Z	keep	Add description search box to activity feed — text input above filter tabs filters rows by keyword (case-insensitive), works combined with instance filter
+2026-03-22T00:39:58Z	keep	Highlight matched search terms in activity feed — <mark> wrap with yellow bg on matching text in act-desc when search is active
+2026-03-22T00:42:43Z	keep	Add '/' keyboard shortcut to focus search box, Escape to clear and blur — terminal convention; placeholder updated to '/ to search descriptions...'
+2026-03-22T00:46:20Z	keep	Add status type filter tabs to activity feed — keep/revert/crash/skip pills below instance filters, hidden when count=0, colored when active
+2026-03-22T00:49:34Z	keep	Improve activity footer: show instance-filtered count ('showing 10 of 738 feather iterations') and search match count ('N matches for X') instead of only showing total when filter=all
+2026-03-22T00:53:09Z	keep	Add instance URL links to cards via hardcoded INSTANCE_URLS map — nba and feather cards now show '↗ live URL' link at bottom since stats.json lacks url field
+2026-03-22T00:55:48Z	keep	Status filter tab counts now scope to active instance filter — selecting 'feather' shows keep/crash counts for feather only, not all instances
+2026-03-22T00:58:44Z	keep	Add total reverts count to header stats — 'N reverts' shown in red (or muted at 0) alongside keeps and crashes, completing the global stats picture
+2026-03-22T01:01:29Z	keep	Extend Escape key to reset all active filters at once — clears instance filter, status filter, and search in one keystroke from anywhere on the page
+2026-03-22T01:04:14Z	keep	Update browser tab title with live stats — shows 'autoweb · 772026-03-22T01:04:19Z	keep	Update browser tab title with live stats: shows 'autoweb · N% · M running' so users can monitor from background tabs
+2026-03-22T01:07:50Z	keep	Hide redundant instance column in activity feed when filtered to single instance — .instance-filtered class toggles on #activity element, CSS hides .act-inst, giving more width to descriptions
+2026-03-22T01:10:32Z	keep	Add × clear button to search box — appears when search has text, clicking clears search without needing Escape
+2026-03-22T01:14:59Z	keep	Color-code time hints on instance filter tabs — green <5min, amber <1hr, red >1hr; matches staleness logic used for header updated badge
+2026-03-22T01:19:07Z	keep	Add 'r' keyboard shortcut to manually trigger data refresh — press r (when not in search input) to reload stats immediately; search placeholder updated to hint at shortcut
+2026-03-22T01:22:46Z	keep	Add '?' keyboard shortcut help overlay — press '?' or click the fixed '?' button to show/hide a panel listing all shortcuts (/, r, Escape) with styled <kbd> elements
+2026-03-22T01:28:02Z	keep	Add crash rate % and revert rate % to header stats — shows e.g. '318 (232026-03-22T01:28:05Z	keep	Add crash rate and revert rate percentages to header stats — shows "318 (23%)" alongside global keeps count, consistent with per-card crash rate display
+2026-03-22T01:33:02Z	keep	Color time-badge in card headers by staleness: green <5min, amber <1hr, red >1hr — matches existing updated-badge logic, live-updated by 15s ticker
+2026-03-22T01:37:03Z	keep	Add relative time hint to activity feed date separators — 'Mar 19' now shows 'Mar 19 · 3d ago' so users immediately see the time gap without calculating
+2026-03-22T01:41:20Z	keep	Instance filter tab counts now reflect active search — typing in search updates 'premere 10' to show only matching entries per instance
+2026-03-22T01:45:13Z	keep	Add 'N today' keeps counter to header — shows today's keep count from the recent window (e.g. '10 today') between the running status and global totals
+2026-03-22T01:48:53Z	keep	Add pulsing ring animation to latest sparkline dot on running instances — white outline pulses on the newest dot so active instances show live activity at a glance
+2026-03-22T01:51:38Z	keep	Add pause/resume auto-refresh toggle — 'p' key pauses 30s refresh loop, shows amber '⏸ paused' in header; 'p' again resumes; 'r' refresh also disabled while paused; 'p' added to keyboard shortcut help overlay
+2026-03-22T01:57:36Z	keep	Add 'N today' count to sparkline row in cards — shows how many keeps happened today for each instance (e.g. '10 today' in green next to streak), muted for instances with 0 today
+2026-03-22T02:02:13Z	keep	Add global run rate to 'recent activity' title — shows ~N/hr based on running instances' recent entries (e.g. '~12/hr' for premere)
+2026-03-22T02:09:41Z	keep	Add keep-rate % to sidebar cards and detail panel — colored pill (green/amber/red) next to keep/revert/crash counts; also in detail header stats string
+2026-03-22T02:15:30Z	keep	Add relative time to detail table timestamps — small 'Xm ago' line below each formatted date for immediate recency at a glance
+2026-03-22T02:18:03Z	keep	Add per-instance accent colors to sidebar card left borders and instance name text — feather=indigo, nba=orange, cli2html=cyan, premere=pink; detail panel instance name also colored
+2026-03-22T02:20:20Z	keep	Add sparkline dots to sidebar cards — 10 colored squares (green=keep, red=revert, amber=crash) from i.recent appear below per-card stats for at-a-glance history
+2026-03-22T02:24:12Z	keep	Add global keep rate % and total keeps to header — '78% 1105 keeps' in amber shows at-a-glance aggregate success rate without selecting an instance
+2026-03-22T02:27:53Z	keep	Color-code detail table rows by status — green/red/amber left border on td:first-child for keep/revert/crash rows, improves scannability
+2026-03-22T02:34:33Z	keep	Add last-active time hint to stopped sidebar cards — shows e.g. '3d ago' in muted text next to stopped badge so recency of each instance is visible at a glance
+2026-03-22T02:36:33Z	keep	Update browser tab title with live stats — shows 'N% · M/M running · autoweb' updated on each 5s refresh
+2026-03-22T02:38:14Z	keep	Add live 'updated Xs ago' header timestamp with staleness color — green <15s, amber <60s, red >60s; ticks every second without waiting for 5s refresh
+2026-03-22T02:40:21Z	keep	Add milestone progress bar to sidebar cards — thin 2px bar with '588 → 750' label shows keeps progress toward next round milestone, colored per instance accent
+2026-03-22T02:42:39Z	keep	Add ↑/↓ arrow key navigation to select instances in sidebar — prevents and scrolls selected card into view
+2026-03-22T02:48:24Z	keep	Show running instance names in accent colors in header — 'feather · dashboard running' with each name in its instance accent color instead of plain '2 running' count
+2026-03-22T02:52:06Z	keep	Dim zero-value reverts and crashes to muted gray in sidebar cards — only red/amber when actually non-zero, reducing visual noise when all instances have 0 reverts
+2026-03-22T02:55:01Z	keep	Add streak counter to sparkline in sidebar cards — shows consecutive keeps count (e.g. '64✓') in green to the right of sparkline dots
+2026-03-22T03:02:56Z	keep	Add status filter tabs to detail table — all/keep/revert/crash pills above the table filter entries by status; tabs show entry counts; resets on instance switch
+2026-03-22T03:05:53Z	keep	Color-code detail panel stats line — green for keeps, muted for zero reverts/crashes, red/amber for non-zero, colored y quality
+2026-03-22T03:12:33Z	keep	Add description search box to detail panel filter bar — small 'search…' input on right of keep/revert/crash tabs; filters rows by keyword with yellow highlight on matched text
+2026-03-22T03:15:26Z	keep	Add 'N today' keeps count to sparkline row in sidebar cards — shows how many keeps happened today per instance (e.g. '4 today' in green after streak counter)
+2026-03-22T03:19:59Z	keep	Dim stopped sidebar cards to 0.72 opacity (restore to 1 on hover/select) — running instances now visually pop against dimmed stopped ones
+2026-03-22T03:23:44Z	keep	Add rich tooltips to sparkline dots in sidebar cards — hovering a dot now shows 'keep: description · 5m ago' instead of just the status word
+2026-03-22T03:25:25Z	keep	Add accent-colored glow box-shadow to running instance cards — visually distinguishes active instances from stopped ones
+2026-03-22T03:27:48Z	keep	Add '/' keyboard shortcut to focus detail search, Escape to clear search; fix arrow keys firing while search input is focused
+2026-04-16T11:39:05Z	keep	Add accent colors for 5 new instances (golf=#34d399, ria=#e879f9, cython=#facc15, alpha=#38bdf8, backtest=#fb7185) — CSS vars and JS ACCENT map updated so all instances get distinct colors instead of fallback blue

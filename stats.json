@@ -1,67 +1,179 @@
 {
-  "updated": "2026-03-17T23:51:11.642745+00:00",
+  "updated": "2026-04-16T11:38:29.697473+00:00",
   "instances": [
     {
+      "name": "feather",
+      "running": false,
+      "keeps": 931,
+      "reverts": 0,
+      "crashes": 190,
+      "last_keep": "Filed issue: session-star-buttons-tiny-touch-targets \u2014 star buttons 14x11px (8% of required 44x44px ",
+      "last_time": "2026-03-24T06:18:19Z"
+    },
+    {
+      "name": "cli2html",
+      "running": false,
+      "keeps": 418,
+      "reverts": 0,
+      "crashes": 147,
+      "last_keep": "rbenv (Ruby version manager) output colorization: * active=bold-green+accent-ver, (set by path)=dim,",
+      "last_time": "2026-03-19T07:51:22Z"
+    },
+    {
       "name": "nba",
-      "url": "https://allan.feather-cloud.dev/public/nba/",
-      "running": true,
-      "keeps": 45,
+      "running": false,
+      "keeps": 64,
       "reverts": 0,
       "crashes": 0,
-      "last_keep": "Add TODAY shortcut button to date navigation \u2014 button appears between date label and next arrow when",
-      "last_time": "2026-03-17T23:48:18Z"
+      "last_keep": "Add relative stat bars to leaders tab \u2014 thin 2px blue bars below each player's stat value show propo",
+      "last_time": "2026-03-18T01:15:10Z"
+    },
+    {
+      "name": "golf",
+      "running": false,
+      "keeps": 1,
+      "reverts": 0,
+      "crashes": 1,
+      "last_keep": "Added countdown timer to hero section (50 days until trip) with frosted glass boxes, responsive on m",
+      "last_time": "2026-03-30T23:23:59Z"
+    },
+    {
+      "name": "ria",
+      "running": false,
+      "keeps": 30,
+      "reverts": 0,
+      "crashes": 3,
+      "last_keep": "Visual consistency pass: Added CSS classes for phase-timeline/phase-item/bottom-line-box (replacing ",
+      "last_time": "2026-04-01T04:59:48Z"
+    },
+    {
+      "name": "cython",
+      "running": false,
+      "keeps": 12,
+      "reverts": 0,
+      "crashes": 4,
+      "last_keep": "Impl verified: build OK (4 .so), 495 tests pass, 1.4x combined speedup (4279->3161ns, 1.1us/tick sav",
+      "last_time": "2026-04-15T09:05:03Z"
+    },
+    {
+      "name": "alpha",
+      "running": false,
+      "keeps": 21,
+      "reverts": 0,
+      "crashes": 8,
+      "last_keep": "LGBM_DELTA (49 features, 800 rounds): train_rmse=5.1631e-04 test_rmse=5.3524e-04 \u2014 +6 delta features",
+      "last_time": "2026-04-15T21:09:16Z"
+    },
+    {
+      "name": "backtest",
+      "running": true,
+      "keeps": 1,
+      "reverts": 0,
+      "crashes": 1,
+      "last_keep": "Phase 0: backtester engine built \u2014 alpha/backtester.py with shadow_book integration, EMA spread, quo",
+      "last_time": "2026-04-16T11:19:52Z"
     }
   ],
   "recent": [
     {
-      "time": "2026-03-17T23:48:18Z",
-      "instance": "nba",
-      "desc": "Add TODAY shortcut button to date navigation \u2014 button appears between date label and next arrow when"
+      "time": "2026-04-16T11:19:52Z",
+      "instance": "backtest",
+      "desc": "Phase 0: backtester engine built \u2014 alpha/backtester.py with shadow_book integration, EMA spread, quo"
     },
     {
-      "time": "2026-03-17T23:45:14Z",
-      "instance": "nba",
-      "desc": "Fix DIFF column operator precedence bug in standings \u2014 was always computing pointsFor-pointsAgainst "
+      "time": "2026-04-15T21:09:16Z",
+      "instance": "alpha",
+      "desc": "LGBM_DELTA (49 features, 800 rounds): train_rmse=5.1631e-04 test_rmse=5.3524e-04 \u2014 +6 delta features"
     },
     {
-      "time": "2026-03-17T23:42:18Z",
-      "instance": "nba",
-      "desc": "Color-code seed numbers in standings \u2014 gold for playoff seeds 1-6, blue/accent for play-in seeds 7-1"
+      "time": "2026-04-15T20:41:25Z",
+      "instance": "alpha",
+      "desc": "LGBM_GOSS_WINSOR (43 features, 800 rounds): train_rmse=5.1804e-04 test_rmse=5.3648e-04 \u2014 GOSS boosti"
     },
     {
-      "time": "2026-03-17T23:40:06Z",
-      "instance": "nba",
-      "desc": "Color-code W-L records in standings (L10/HOME/ROAD/CONF) \u2014 green for winning records, red for losing"
+      "time": "2026-04-15T19:52:47Z",
+      "instance": "alpha",
+      "desc": "LGBM_FAIR (43 features, 800 rounds): train_rmse=5.1909e-04 test_rmse=5.3692e-04 \u2014 Fair loss (c=5e-4,"
     },
     {
-      "time": "2026-03-17T23:36:27Z",
-      "instance": "nba",
-      "desc": "Add local timezone abbreviation to game times \u2014 scheduled games now show e.g. '7:00 PM PST' instead "
+      "time": "2026-04-15T19:36:40Z",
+      "instance": "alpha",
+      "desc": "XGBOOST_HUBER (43 features, 781 rounds): train_rmse=5.1911e-04 test_rmse=5.3695e-04 \u2014 pseudo-Huber l"
     },
     {
-      "time": "2026-03-17T23:33:45Z",
-      "instance": "nba",
-      "desc": "Show scheduled game times in local timezone \u2014 replaced ESPN's ET-hardcoded time string (e.g. '7:00 P"
+      "time": "2026-04-15T19:22:29Z",
+      "instance": "alpha",
+      "desc": "LGBM_DECAY (43 features, 797 rounds): train_rmse=5.1656e-04 test_rmse=5.3526e-04 \u2014 43 microprice fea"
     },
     {
-      "time": "2026-03-17T23:30:54Z",
-      "instance": "nba",
-      "desc": "Make standings table horizontally scrollable with sticky team column \u2014 added overflow-x:auto scroll "
+      "time": "2026-04-15T18:43:51Z",
+      "instance": "alpha",
+      "desc": "LGBM_CROSS_MICRO (49 features, 800 rounds): train_rmse=5.1640e-04 test_rmse=5.3547e-04 \u2014 +6 cross-as"
     },
     {
-      "time": "2026-03-17T23:23:56Z",
-      "instance": "nba",
-      "desc": "Add CLOSE badge to live games within 5 points \u2014 pulsing gold badge in game header gives at-a-glance "
+      "time": "2026-04-15T18:28:33Z",
+      "instance": "alpha",
+      "desc": "ENSEMBLE_RIDGE_LGBM (43 features): train_rmse=5.1672e-04 test_rmse=5.3545e-04 \u2014 Ridge+LGBM Huber ens"
     },
     {
-      "time": "2026-03-17T23:19:35Z",
-      "instance": "nba",
-      "desc": "Add DIFF (point differential) column to standings table \u2014 shows season-aggregate point differential "
+      "time": "2026-04-15T17:47:05Z",
+      "instance": "alpha",
+      "desc": "LGBM_HUBER (48 features, 800 rounds): train_rmse=5.1631e-04 test_rmse=5.3524e-04 \u2014 Huber loss (alpha"
     },
     {
-      "time": "2026-03-17T23:17:25Z",
-      "instance": "nba",
-      "desc": "Add CONF (conference) record column to standings table \u2014 shows conference W-L record (e.g. '28-14') "
+      "time": "2026-04-15T17:32:02Z",
+      "instance": "alpha",
+      "desc": "LGBM_OFI (48 features, 800 rounds): train_rmse=5.1791e-04 test_rmse=5.3629e-04 \u2014 +5 OFI features (of"
+    },
+    {
+      "time": "2026-04-15T17:17:21Z",
+      "instance": "alpha",
+      "desc": "LGBM_MICROPRICE (43 features, 591 rounds): train_rmse=5.1672e-04 test_rmse=5.3545e-04 \u2014 +5 micropric"
+    },
+    {
+      "time": "2026-04-15T09:05:03Z",
+      "instance": "cython",
+      "desc": "Impl verified: build OK (4 .so), 495 tests pass, 1.4x combined speedup (4279->3161ns, 1.1us/tick sav"
+    },
+    {
+      "time": "2026-04-15T09:03:37Z",
+      "instance": "cython",
+      "desc": "No remaining optimization targets \u2014 all 6 plan items complete. 495 tests pass, 4 .so modules loaded,"
+    },
+    {
+      "time": "2026-04-15T09:02:30Z",
+      "instance": "cython",
+      "desc": "Impl verification: build OK (4 .so), 495 tests pass, 1.3x combined speedup (4432->3339ns, 1.1us/tick"
+    },
+    {
+      "time": "2026-04-15T09:01:11Z",
+      "instance": "cython",
+      "desc": "Plan fully complete \u2014 all 6 items done, no remaining optimization targets. strategy.py is I/O-bound "
+    },
+    {
+      "time": "2026-04-15T08:59:29Z",
+      "instance": "cython",
+      "desc": "Verified: all 4 Cython extensions built, 495 tests pass, 1.4x combined speedup (1.4us saved/tick)"
+    },
+    {
+      "time": "2026-04-15T08:58:16Z",
+      "instance": "cython",
+      "desc": "Plan complete \u2014 all 6 optimization items done. Final verification: 495 tests pass, all 4 .so modules"
+    },
+    {
+      "time": "2026-04-15T08:57:00Z",
+      "instance": "cython",
+      "desc": "All 4 Cython modules built+tested (md_normalize, risk, order_slot, strat_mm). Fixed strat_mm benchma"
+    },
+    {
+      "time": "2026-04-15T08:53:45Z",
+      "instance": "cython",
+      "desc": "Final benchmark comparison: bench_final.py created + bench_hot_path.py updated with order_slot Cytho"
+    },
+    {
+      "time": "2026-04-15T08:43:01Z",
+      "instance": "cython",
+      "desc": "Cythonize strat_mm_003: _fast_strat_mm.pyx with fast_calculate_quotes/fast_is_inside_dead_zone/fast_"
     }
   ]
 }
