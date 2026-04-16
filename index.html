@@ -115,6 +115,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
           <span class="dt" id="d-name"></span>
           <div class="dm"><span id="d-badge"></span><span id="d-stats"></span></div>
         </div>
+        <div id="d-qbar" style="height:3px;background:var(--b2);border-radius:1.5px;overflow:hidden;display:flex;margin:0 16px"></div>
         <div class="ft-bar" id="d-filt" style="display:none"></div>
         <div class="cur" id="d-cur"></div>
         <table>
@@ -222,6 +223,8 @@ function renderDet(i){
   const _cr=i.crashes>0?`<span style="color:var(--yel)">${i.crashes}c</span>`:`<span style="color:var(--t3)">0c</span>`;
   const _pctCol=_pct===null?'var(--t3)':_pct>=90?'var(--green)':_pct>=70?'var(--yel)':'var(--red)';
   document.getElementById('d-stats').innerHTML=`<span style="color:var(--green)">${i.keeps}k</span> · ${_rv} · ${_cr}`+(_pct!==null?` · <span style="color:${_pctCol};font-weight:600">${_pct}%</span>`:'')+( i.last_ts?` · <span style="color:var(--t3)">${ago(i.last_ts)}</span>`:'');
+  const qb=document.getElementById('d-qbar');
+  if(_tot){const kw=Math.round(i.keeps/_tot*100);const rw=Math.round(i.reverts/_tot*100);const cw=100-kw-rw;qb.innerHTML=`<div style="width:${kw}%;background:var(--green)"></div><div style="width:${rw}%;background:var(--red)"></div><div style="width:${cw}%;background:var(--yel)"></div>`;qb.style.display='flex';}else{qb.style.display='none';}
   const cur=document.getElementById('d-cur'), act=strip(i.current);
   if(i.running&&act){cur.textContent='⟳ '+act;cur.classList.add('on');}else cur.classList.remove('on');
   // Build filter tabs
