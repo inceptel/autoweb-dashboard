@@ -115,3 +115,4 @@
 2026-04-16T12:56:06Z	keep	Add iteration interval gaps to detail table — small '+Xm' annotation below each row's timestamp shows time elapsed since previous entry, making iteration pace visible at a glance
 2026-04-16T12:59:53Z	keep	Add refresh progress bar — thin 2px green-to-blue gradient bar at top drains over 4.8s cycle, resets on each 5s auto-refresh; gives visual feedback about refresh timing without taking space
 2026-04-16T13:02:48Z	keep	Add run rate (~N/hr) and live 'next ~Xm' countdown to detail panel header — running instances show iteration pace and estimated next run time, matching sidebar card info; ticks live via updateTs
+2026-04-16T13:06:00Z	keep	Add time span to detail panel footer — shows 'spanning Xh Ym' alongside entry count so users see the time window covered by visible entries; works with filters and search

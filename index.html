@@ -164,6 +164,15 @@ function ago(ts){
   if(d<86400)return Math.floor(d/3600)+'h ago';return Math.floor(d/86400)+'d ago';
 }
 function strip(s){return(s||'').replace(/^Running at \d+:\d+ UTC[^—]*—[^.]*\.\s*Last:\s*/i,'').trim();}
+function spanTxt(rows){
+  const ts=rows.filter(r=>r.ts).map(r=>new Date(r.ts).getTime()).sort((a,b)=>a-b);
+  if(ts.length<2)return'';
+  const ms=ts[ts.length-1]-ts[0];
+  const m=Math.round(ms/60000);
+  if(m<1)return'';
+  if(m<60)return m+'m';
+  const h=Math.floor(m/60);return h+'h '+(m%60)+'m';
+}
 function updateTs(){
   const el=document.getElementById('h-ts');
   if(!lastRefresh){return;}
@@ -314,7 +323,7 @@ function renderDet(i){
       tb.innerHTML='<tr><td colspan="3" class="empty">No matching entries</td></tr>';
     }
     const ft0=document.getElementById('d-foot');
-    if(ft0){if(!rec.length){ft0.style.display='none';}else{ft0.style.display='block';const tot=i.keeps+i.reverts+i.crashes;ft0.innerHTML=q?`<span style="color:var(--yel)">${rows.length}</span> match${rows.length!==1?'es':''} for "${e(q)}"${detFilter?' in '+detFilter:''}`:detFilter?`${rows.length} of ${rec.length} entries · filtered by <span style="color:${detFilter==='keep'?'var(--green)':detFilter==='revert'?'var(--red)':detFilter==='crash'?'var(--yel)':'var(--t2)'}">${detFilter}</span>`:`showing ${rec.length} of ${tot} total iterations`;}}
+    if(ft0){if(!rec.length){ft0.style.display='none';}else{ft0.style.display='block';const tot=i.keeps+i.reverts+i.crashes;const sp0=spanTxt(rows);const spSuf=sp0?' · <span style="color:var(--t3)">spanning '+sp0+'</span>':'';ft0.innerHTML=q?`<span style="color:var(--yel)">${rows.length}</span> match${rows.length!==1?'es':''} for "${e(q)}"${detFilter?' in '+detFilter:''}${spSuf}`:detFilter?`${rows.length} of ${rec.length} entries · filtered by <span style="color:${detFilter==='keep'?'var(--green)':detFilter==='revert'?'var(--red)':detFilter==='crash'?'var(--yel)':'var(--t2)'}">${detFilter}</span>${spSuf}`:`showing ${rec.length} of ${tot} total iterations${spSuf}`;}}
     return;
   }
   let lastDateKey='';
@@ -341,7 +350,7 @@ function renderDet(i){
     return sep+`<tr class="${rc}"><td class="ts">${fts(r.ts)}<br><span style="font-size:9px;color:var(--t3)">${ago(r.ts)}</span>${gapHtml}</td><td class="sc"><span class="badge ${cl}">${r.status}</span></td><td><span class="desc">${descHtml}</span></td></tr>`;
   }).join('');
   const foot=document.getElementById('d-foot');
-  if(foot){const tot=i.keeps+i.reverts+i.crashes;foot.style.display='block';foot.innerHTML=q?`<span style="color:var(--yel)">${rows.length}</span> match${rows.length!==1?'es':''} for "${e(q)}"${detFilter?' in '+detFilter:''}`:detFilter?`${rows.length} of ${rec.length} entries · filtered by <span style="color:${detFilter==='keep'?'var(--green)':detFilter==='revert'?'var(--red)':detFilter==='crash'?'var(--yel)':'var(--t2)'}">${detFilter}</span>`:`showing ${rec.length} of ${tot} total iterations`;}
+  if(foot){const tot=i.keeps+i.reverts+i.crashes;const sp1=spanTxt(rows);const spSuf1=sp1?' · <span style="color:var(--t3)">spanning '+sp1+'</span>':'';foot.style.display='block';foot.innerHTML=q?`<span style="color:var(--yel)">${rows.length}</span> match${rows.length!==1?'es':''} for "${e(q)}"${detFilter?' in '+detFilter:''}${spSuf1}`:detFilter?`${rows.length} of ${rec.length} entries · filtered by <span style="color:${detFilter==='keep'?'var(--green)':detFilter==='revert'?'var(--red)':detFilter==='crash'?'var(--yel)':'var(--t2)'}">${detFilter}</span>${spSuf1}`:`showing ${rec.length} of ${tot} total iterations${spSuf1}`;}
 }
 
 function setDf(f,name){
