@@ -108,6 +108,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
       <span id="h-crashes" style="color:var(--t3)"></span>
       <span id="h-reverts" style="color:var(--t3)"></span>
       <span><span id="h-tot">0</span> instances</span>
+      <span id="h-paused" style="display:none;color:#fbbf24;font-weight:600;background:rgba(251,191,36,.12);padding:1px 6px;border-radius:6px;font-size:10px">⏸ paused</span>
       <span id="h-ts">–</span>
     </div>
   </div>
@@ -135,7 +136,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
   </div>
 </div>
 <script>
-let instances=[], sel=null, lastRefresh=null, detFilter=null, detSearch='', stoppedCollapsed=false;
+let instances=[], sel=null, lastRefresh=null, detFilter=null, detSearch='', stoppedCollapsed=false, paused=false;
 const isMobile=()=>window.innerWidth<=640;
 function openSb(){document.querySelector('.body').classList.add('sb-open');document.getElementById('sb-toggle-lbl').textContent='Hide';}
 function closeSb(){document.querySelector('.body').classList.remove('sb-open');document.getElementById('sb-toggle-lbl').textContent='Instances';}
@@ -424,9 +425,17 @@ document.addEventListener('keydown',e=>{
   }
   if(e.key==='r'&&!inInput){
     e.preventDefault();
+    if(paused)return;
     refresh();
     const ts=document.getElementById('h-ts');
     ts.textContent='refreshing…';ts.style.color='var(--green)';
+  }
+  if(e.key==='p'&&!inInput){
+    e.preventDefault();
+    paused=!paused;
+    document.getElementById('h-paused').style.display=paused?'inline-flex':'none';
+    if(!paused){refresh();const rb=document.getElementById('rbar');if(rb){rb.style.animation='none';rb.offsetHeight;rb.style.animation='drain 4.8s linear forwards';}}
+    else{const rb=document.getElementById('rbar');if(rb)rb.style.animation='none';}
   }
   if(e.key==='Escape'){
     const inp=document.getElementById('d-srch');
@@ -434,7 +443,7 @@ document.addEventListener('keydown',e=>{
     if(detSearch){detSearch='';if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}}
   }
 });
-init();setInterval(refresh,5000);setInterval(updateTs,1000);
+init();setInterval(()=>{if(!paused)refresh();},5000);setInterval(updateTs,1000);
 </script>
 </body>
 </html>
