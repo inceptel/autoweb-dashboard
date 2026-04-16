@@ -316,7 +316,8 @@ async function refresh(){
     arr.forEach(i=>{i.last_ts=i.last_ts||i.last_time;i.recent=i.recent||recentByInst[i.name]||[];});
     instances=arr.sort((a,b)=>b.running-a.running||b.keeps-a.keeps);
     lastRefresh=Date.now();renderSb();
-    if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}
+    if(!sel&&instances.length){pick((instances.find(i=>i.running)||instances[0]).name);}
+    else if(sel){const i=instances.find(x=>x.name===sel);if(i)renderDet(i);}
     updateTs();
   }catch(err){document.getElementById('h-ts').textContent='error';document.getElementById('h-ts').style.color='var(--red)';}
 }
