@@ -128,11 +128,12 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
   </div>
 </div>
 <script>
-let instances=[], sel=null, lastRefresh=null, detFilter=null, detSearch='';
+let instances=[], sel=null, lastRefresh=null, detFilter=null, detSearch='', stoppedCollapsed=false;
 const isMobile=()=>window.innerWidth<=640;
 function openSb(){document.querySelector('.body').classList.add('sb-open');document.getElementById('sb-toggle-lbl').textContent='Hide';}
 function closeSb(){document.querySelector('.body').classList.remove('sb-open');document.getElementById('sb-toggle-lbl').textContent='Instances';}
 function toggleSb(){document.querySelector('.body').classList.contains('sb-open')?closeSb():openSb();}
+function toggleStopped(){stoppedCollapsed=!stoppedCollapsed;renderSb();}
 const ACCENT={feather:'#818cf8',nba:'#fb923c',cli2html:'#22d3ee',premere:'#f472b6',trading:'#4ade80',golf:'#34d399',ria:'#e879f9',cython:'#facc15',alpha:'#38bdf8',backtest:'#fb7185'};
 function accent(name){return ACCENT[name]||'#60a5fa';}
 function milestone(keeps){
@@ -204,8 +205,9 @@ function renderSb(){
   document.getElementById('sb').innerHTML=instances.map(i=>{
     let secHdr='';
     if(prevRunning===null&&i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--green);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1)">▶ Running <span style="font-weight:400;opacity:.6">${runCount}</span></div>`;}
-    else if(prevRunning!==false&&!i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1)">■ Stopped <span style="font-weight:400;opacity:.6">${stopCount}</span></div>`;}
+    else if(prevRunning!==false&&!i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1);cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none" onclick="toggleStopped()" title="${stoppedCollapsed?'Show':'Hide'} stopped instances">${stoppedCollapsed?'▶':'■'} Stopped <span style="font-weight:400;opacity:.6">${stopCount}</span><span style="margin-left:auto;font-size:9px;opacity:.4">${stoppedCollapsed?'show':'hide'}</span></div>`;}
     prevRunning=i.running;
+    if(!i.running&&stoppedCollapsed)return secHdr;
     const act=strip(i.current), live=i.running&&act.length>3;
     const txt=live?act:(i.last_keep||'');
     const ac=accent(i.name);
