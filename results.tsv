@@ -97,3 +97,4 @@
 2026-04-16T11:44:05Z	keep	Add clickable URL links (↗) to sidebar cards and detail panel header — instances with live URLs (feather, cli2html, nba, golf) show accent-colored link icon next to name; opens in new tab without triggering card selection
 2026-04-16T11:49:13Z	keep	Add date separators to detail table — 'Today', 'Yesterday', 'Mar 19 · 3d ago' dividers appear between groups of entries from different dates, improving scannability of long activity lists
 2026-04-16T11:53:24Z	keep	Fix broken data fetch — change URL from /aw/instances.json (returned HTML) to relative autoweb-stats.json; parse {instances,recent} structure; map last_time to last_ts; build per-instance recent arrays from global recent feed
+2026-04-16T11:56:25Z	keep	Add total crashes and reverts counts with percentages to header stats — shows '354 crashes (19%)' in amber and '0 reverts' muted gray alongside existing keep rate, completing global stats picture

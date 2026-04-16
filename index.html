@@ -97,6 +97,8 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
     <div class="hdr-meta">
       <span id="h-rate" style="font-weight:600"></span>
       <span><span class="run" id="h-run">0</span> running</span>
+      <span id="h-crashes" style="color:var(--t3)"></span>
+      <span id="h-reverts" style="color:var(--t3)"></span>
       <span><span id="h-tot">0</span> instances</span>
       <span id="h-ts">–</span>
     </div>
@@ -172,6 +174,16 @@ function renderSb(){
   const rateEl=document.getElementById('h-rate');
   if(pct!==null){const col=pct>=90?'var(--green)':pct>=70?'var(--yel)':'var(--red)';rateEl.innerHTML=`<span style="color:${col}">${pct}%</span> <span style="color:var(--t3);font-weight:400">${totK} keeps</span>`;}
   else rateEl.textContent='';
+  const totC=instances.reduce((s,i)=>s+i.crashes,0);
+  const totR=instances.reduce((s,i)=>s+i.reverts,0);
+  const cEl=document.getElementById('h-crashes');
+  const rEl=document.getElementById('h-reverts');
+  if(totAll){
+    const cPct=Math.round(totC/totAll*100);
+    cEl.innerHTML=totC>0?`<span style="color:var(--yel)">${totC}</span><span style="color:var(--t3);font-weight:400"> crashes</span><span style="color:var(--t3);font-weight:400;opacity:.7"> (${cPct}%)</span>`:`<span style="color:var(--t3)">0 crashes</span>`;
+    const rPct=Math.round(totR/totAll*100);
+    rEl.innerHTML=totR>0?`<span style="color:var(--red)">${totR}</span><span style="color:var(--t3);font-weight:400"> reverts</span><span style="color:var(--t3);font-weight:400;opacity:.7"> (${rPct}%)</span>`:`<span style="color:var(--t3)">0 reverts</span>`;
+  }else{cEl.textContent='';rEl.textContent='';}
   document.title = (pct!==null?pct+'% · ':'')+run+'/'+instances.length+' running · autoweb';
   if(!instances.length){document.getElementById('sb').innerHTML='<div class="empty">No instances</div>';return;}
   document.getElementById('sb').innerHTML=instances.map(i=>{
