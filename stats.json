@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T11:59:32.890020+00:00",
+  "updated": "2026-04-16T12:03:31.462780+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 3,
+      "keeps": 4,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 0 latency sim + sweep: added --latency and --latency-sweep to backtester. Heapq-based pending ",
-      "last_time": "2026-04-16T11:48:14Z"
+      "last_keep": "Phase 2: Alpha integration \u2014 alpha/alpha_model.py (train/save/predict LGBM Huber 48-feature model), ",
+      "last_time": "2026-04-16T12:00:25Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T12:00:25Z",
+      "instance": "backtest",
+      "desc": "Phase 2: Alpha integration \u2014 alpha/alpha_model.py (train/save/predict LGBM Huber 48-feature model), "
+    },
     {
       "time": "2026-04-16T11:48:14Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T08:58:16Z",
       "instance": "cython",
       "desc": "Plan complete \u2014 all 6 optimization items done. Final verification: 495 tests pass, all 4 .so modules"
-    },
-    {
-      "time": "2026-04-15T08:57:00Z",
-      "instance": "cython",
-      "desc": "All 4 Cython modules built+tested (md_normalize, risk, order_slot, strat_mm). Fixed strat_mm benchma"
     }
   ]
 }

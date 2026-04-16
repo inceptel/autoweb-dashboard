@@ -186,11 +186,18 @@ function renderSb(){
   }else{cEl.textContent='';rEl.textContent='';}
   document.title = (pct!==null?pct+'% · ':'')+run+'/'+instances.length+' running · autoweb';
   if(!instances.length){document.getElementById('sb').innerHTML='<div class="empty">No instances</div>';return;}
+  const runCount=instances.filter(i=>i.running).length;
+  const stopCount=instances.length-runCount;
+  let prevRunning=null;
   document.getElementById('sb').innerHTML=instances.map(i=>{
+    let secHdr='';
+    if(prevRunning===null&&i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--green);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1)">▶ Running <span style="font-weight:400;opacity:.6">${runCount}</span></div>`;}
+    else if(prevRunning!==false&&!i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1)">■ Stopped <span style="font-weight:400;opacity:.6">${stopCount}</span></div>`;}
+    prevRunning=i.running;
     const act=strip(i.current), live=i.running&&act.length>3;
     const txt=live?act:(i.last_keep||'');
     const ac=accent(i.name);
-    return`<div class="card${sel===i.name?' on':''}${i.running?'':' stopped'}" style="border-left-color:${ac}${i.running?`;box-shadow:0 0 0 1px ${ac}22,0 2px 16px ${ac}18`:''}" onclick="pick('${i.name}')">
+    return secHdr+`<div class="card${sel===i.name?' on':''}${i.running?'':' stopped'}" style="border-left-color:${ac}${i.running?`;box-shadow:0 0 0 1px ${ac}22,0 2px 16px ${ac}18`:''}" onclick="pick('${i.name}')">
       <div class="ch"><span class="cn" style="color:${ac}">${e(i.name)}</span>${i.url?`<a href="${e(i.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="url-link" style="color:${ac};opacity:.6;font-size:10px;text-decoration:none;flex-shrink:0" title="Open ${e(i.name)} live site">↗</a>`:''}
         <span class="badge ${i.running?'br':'bs'}">${i.running?'<span class="pulse"></span>running':'stopped'}</span>
         ${!i.running&&i.last_ts?`<span style="font-size:9px;color:var(--t3);margin-left:2px">${ago(i.last_ts)}</span>`:''}</div>

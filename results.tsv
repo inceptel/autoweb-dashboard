@@ -99,3 +99,4 @@
 2026-04-16T11:53:24Z	keep	Fix broken data fetch — change URL from /aw/instances.json (returned HTML) to relative autoweb-stats.json; parse {instances,recent} structure; map last_time to last_ts; build per-instance recent arrays from global recent feed
 2026-04-16T11:56:25Z	keep	Add total crashes and reverts counts with percentages to header stats — shows '354 crashes (19%)' in amber and '0 reverts' muted gray alongside existing keep rate, completing global stats picture
 2026-04-16T12:00:25Z	keep	Add instance overview card to empty detail panel — shows big stat numbers (keeps/reverts/crashes/rate), quality bar, and last keep description instead of bare 'No matching entries' for instances without recent activity data
+2026-04-16T12:04:13Z	keep	Add Running/Stopped section headers to sidebar — green '▶ RUNNING N' and muted '■ STOPPED N' dividers group instances by status for clearer visual hierarchy
