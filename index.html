@@ -201,11 +201,17 @@ function renderSb(){
   if(!instances.length){document.getElementById('sb').innerHTML='<div class="empty">No instances</div>';return;}
   const runCount=instances.filter(i=>i.running).length;
   const stopCount=instances.length-runCount;
+  const stoppedArr=instances.filter(i=>!i.running);
+  const sK=stoppedArr.reduce((s,i)=>s+i.keeps,0);
+  const sC=stoppedArr.reduce((s,i)=>s+i.crashes,0);
+  const sT=stoppedArr.reduce((s,i)=>s+i.keeps+i.reverts+i.crashes,0);
+  const sPct=sT?Math.round(sK/sT*100):null;
+  const sPctCol=sPct===null?'var(--t3)':sPct>=90?'var(--green)':sPct>=70?'var(--yel)':'var(--red)';
   let prevRunning=null;
   document.getElementById('sb').innerHTML=instances.map(i=>{
     let secHdr='';
     if(prevRunning===null&&i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--green);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1)">▶ Running <span style="font-weight:400;opacity:.6">${runCount}</span></div>`;}
-    else if(prevRunning!==false&&!i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1);cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none" onclick="toggleStopped()" title="${stoppedCollapsed?'Show':'Hide'} stopped instances">${stoppedCollapsed?'▶':'■'} Stopped <span style="font-weight:400;opacity:.6">${stopCount}</span><span style="margin-left:auto;font-size:9px;opacity:.4">${stoppedCollapsed?'show':'hide'}</span></div>`;}
+    else if(prevRunning!==false&&!i.running){secHdr=`<div style="padding:6px 12px 4px;font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--b1);background:var(--s1);cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none" onclick="toggleStopped()" title="${stoppedCollapsed?'Show':'Hide'} stopped instances">${stoppedCollapsed?'▶':'■'} Stopped <span style="font-weight:400;opacity:.6">${stopCount}</span>${stoppedCollapsed&&sT?`<span style="font-weight:400;font-size:9px;text-transform:none;letter-spacing:0;margin-left:6px;opacity:.55"><span style="color:var(--green)">${sK}k</span> · <span style="color:${sC?'var(--yel)':'var(--t3)'}">${sC}c</span> · <span style="color:${sPctCol}">${sPct}%</span></span>`:''}<span style="margin-left:auto;font-size:9px;opacity:.4">${stoppedCollapsed?'show':'hide'}</span></div>`;}
     prevRunning=i.running;
     if(!i.running&&stoppedCollapsed)return secHdr;
     const act=strip(i.current), live=i.running&&act.length>3;

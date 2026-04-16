@@ -107,3 +107,4 @@
 2026-04-16T12:22:55Z	keep	Hide misleading TIME/STATUS/DESCRIPTION table headers when detail panel shows overview card (no recent entries) — stopped instances now show clean big-number stats without confusing column headers above them
 2026-04-16T12:27:33Z	keep	Add 'N today' keeps counter to header — shows today's keep count (e.g. '6 today' in green) between running status and crashes for at-a-glance daily productivity
 2026-04-16T12:31:30Z	keep	Add collapsible stopped section in sidebar — clicking '■ STOPPED N' header toggles visibility of stopped instance cards; shows ▶/■ indicator and show/hide hint; reduces sidebar clutter when only running instances matter
+2026-04-16T12:35:03Z	keep	Add aggregate stats summary to collapsed stopped section header — shows '1477k · 353c · 81%' in color when stopped instances are hidden, so users retain visibility into stopped instances' aggregate health without expanding the section
