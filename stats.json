@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-16T12:37:32.502340+00:00",
+  "updated": "2026-04-16T12:42:34.108996+00:00",
   "instances": [
     {
       "name": "feather",
@@ -67,14 +67,19 @@
     {
       "name": "backtest",
       "running": true,
-      "keeps": 7,
+      "keeps": 8,
       "reverts": 0,
       "crashes": 1,
-      "last_keep": "Phase 3: Parameter sweeps \u2014 added --param-sweep flag to backtester. Sweeps spread_mult, pos_mult, ma",
-      "last_time": "2026-04-16T12:27:27Z"
+      "last_keep": "Phase 4: Advanced metrics \u2014 fill rate (37% overall, BTC/ETH/SOL ~80%, ZEREBRO 19%), markout by posit",
+      "last_time": "2026-04-16T12:42:22Z"
     }
   ],
   "recent": [
+    {
+      "time": "2026-04-16T12:42:22Z",
+      "instance": "backtest",
+      "desc": "Phase 4: Advanced metrics \u2014 fill rate (37% overall, BTC/ETH/SOL ~80%, ZEREBRO 19%), markout by posit"
+    },
     {
       "time": "2026-04-16T12:27:27Z",
       "instance": "backtest",
@@ -169,11 +174,6 @@
       "time": "2026-04-15T09:03:37Z",
       "instance": "cython",
       "desc": "No remaining optimization targets \u2014 all 6 plan items complete. 495 tests pass, 4 .so modules loaded,"
-    },
-    {
-      "time": "2026-04-15T09:02:30Z",
-      "instance": "cython",
-      "desc": "Impl verification: build OK (4 .so), 495 tests pass, 1.3x combined speedup (4432->3339ns, 1.1us/tick"
     }
   ]
 }

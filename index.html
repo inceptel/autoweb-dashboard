@@ -117,6 +117,7 @@ tr.row-x td:first-child{border-left:2px solid rgba(85,96,112,.12)}
           <div class="dm"><span id="d-badge"></span><span id="d-stats"></span></div>
         </div>
         <div id="d-qbar" style="height:3px;background:var(--b2);border-radius:1.5px;overflow:hidden;display:flex;margin:0 16px"></div>
+        <div id="d-spark" style="display:flex;gap:3px;align-items:center;padding:6px 16px 2px;flex-shrink:0;flex-wrap:wrap"></div>
         <div class="ft-bar" id="d-filt" style="display:none"></div>
         <div class="cur" id="d-cur"></div>
         <table>
@@ -258,6 +259,8 @@ function renderDet(i){
   if(i.running&&act){cur.textContent='⟳ '+act;cur.classList.add('on');}else cur.classList.remove('on');
   // Build filter tabs
   const rec=i.recent||[];
+  const spark=document.getElementById('d-spark');
+  if(rec.length){const ordered=[...rec].reverse();const dots=ordered.map(r=>{const c={keep:'#4ade80',revert:'#f87171',crash:'#fbbf24'}[r.status]||'#556070';const tip=(r.status||'keep')+': '+(r.desc||'').slice(0,80).replace(/"/g,'')+' · '+ago(r.ts);return`<span class="sd" style="background:${c}" title="${tip}"></span>`;}).join('');let streak=0;for(let j=0;j<rec.length;j++){if(rec[j].status==='keep')streak++;else break;}const td=new Date().toDateString();const tk=rec.filter(r=>r.status==='keep'&&r.ts&&new Date(r.ts).toDateString()===td).length;spark.innerHTML=dots+(streak>0?`<span style="font-size:10px;color:var(--green);margin-left:6px;font-weight:600">${streak}✓</span>`:'')+(tk>0?`<span style="font-size:10px;color:var(--green);margin-left:6px;opacity:.65">${tk} today</span>`:'');spark.style.display='flex';}else{spark.style.display='none';}
   const fbar=document.getElementById('d-filt');
   if(rec.length){
     const counts={};rec.forEach(r=>{counts[r.status]=(counts[r.status]||0)+1;});
